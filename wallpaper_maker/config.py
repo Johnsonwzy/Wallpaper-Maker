@@ -6,8 +6,8 @@ from typing import Tuple
 # 单张图源文件体积上限（弱网下未完成下载的巨文件等），避免拖垮内存
 MAX_SOURCE_IMAGE_FILE_BYTES = 200 * 1024 * 1024
 
-DEFAULT_IMAGE_FOLDER = "/Volumes/MyDisk/Magazine Covers"
-DEFAULT_OUTPUT_DIR = "/Volumes/MyDisk/Wallpaper"
+DEFAULT_IMAGE_FOLDER = "~/Pictures"
+DEFAULT_OUTPUT_DIR = "~/Pictures/Wallpaper Maker Output"
 DEFAULT_RANDOM_COUNT = 18
 DEFAULT_SEED_COUNT = 6
 DEFAULT_WALLPAPER_WIDTH = 5120
