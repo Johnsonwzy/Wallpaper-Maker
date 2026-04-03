@@ -1,0 +1,83 @@
+"""默认常量、预览与图源扩展名。"""
+from __future__ import annotations
+
+from typing import Tuple
+
+# 单张图源文件体积上限（弱网下未完成下载的巨文件等），避免拖垮内存
+MAX_SOURCE_IMAGE_FILE_BYTES = 200 * 1024 * 1024
+
+DEFAULT_IMAGE_FOLDER = "/Volumes/MyDisk/Magazine Covers"
+DEFAULT_OUTPUT_DIR = "/Volumes/MyDisk/Wallpaper"
+DEFAULT_RANDOM_COUNT = 18
+DEFAULT_SEED_COUNT = 6
+DEFAULT_WALLPAPER_WIDTH = 5120
+DEFAULT_WALLPAPER_HEIGHT = 2880
+DEFAULT_LAYOUT = "scatter"
+DEFAULT_BG_STYLE = "from_covers"
+DEFAULT_BG_BASE_STYLE = "from_covers"
+DEFAULT_BG_OVERLAY_STYLE = "none"
+DEFAULT_TEXT = "Stay Hungry, Stay Foolish"
+DEFAULT_TEXT_SIZE = 60
+DEFAULT_STAMP_SIZE = 42
+DEFAULT_TEXT_POS = "bottom_right"
+DEFAULT_STAMP_POS = "bottom_left"
+DEFAULT_TEXT_COLOR = (255, 255, 255)
+DEFAULT_STROKE_COLOR = (0, 0, 0)
+
+DEFAULT_EXPORT_FORMAT = "png"
+DEFAULT_JPEG_QUALITY = 92
+DEFAULT_WEBP_QUALITY = 85
+DEFAULT_FILTER_STYLE = "none"
+DEFAULT_FILTER_STRENGTH = 70
+DEFAULT_BG_OVERLAY_STRENGTH = 70
+DEFAULT_STYLE_INTENSITY = "normal"
+DEFAULT_ENABLE_AESTHETIC_RULES = True
+DEFAULT_UI_THEME_MODE = "system"
+DEFAULT_UI_LANGUAGE = "zh"
+
+PRESET_VERSION = 1
+BUILTIN_STYLE_PRESET_PLACEHOLDER = "— 选择内置风格（可再微调）▼ —"
+DEFAULT_SAMPLING_STRATEGY = "natural"
+
+APP_NAME = "Wallpaper Maker"
+APP_VERSION = "3.0.0"
+APP_AUTHOR = "ZY Wei"
+APP_COPYRIGHT_YEAR = "2026"
+
+PREVIEW_MAX_SIDE = 1280
+PREVIEW_BATCH_CAP_DECOUPLED = 32
+
+# 主窗口与预览画廊（Apple Studio Display 27" 5K：macOS 下常见「逻辑分辨率」约 2560×1440）
+# 双窗左右对称、同大：单窗宽度 ≈ (逻辑宽 − 左右边距 − 中间缝) / 2
+UI_STUDIO_DISPLAY_LOGIC_W = 2560
+UI_STUDIO_DISPLAY_LOGIC_H = 1440
+UI_WINDOW_SCREEN_MARGIN = 16
+# 0 = 预览窗紧贴主窗右侧（仍可能受系统阴影/边框影响有 1px 级视觉缝）
+UI_WINDOW_PREVIEW_GAP = 0
+UI_STUDIO_DEFAULT_WINDOW_W = 1264  # (2560 − 32 − 0) // 2
+UI_STUDIO_DEFAULT_WINDOW_H = 980
+# 非 Studio 级宽度屏时的回退上限（仍保证双窗能并排）
+UI_WINDOW_FALLBACK_MAX_W = 920
+UI_WINDOW_FALLBACK_MAX_H = 800
+UI_WINDOW_MIN_W = 560
+UI_WINDOW_MIN_H = 520
+
+# 主窗口 / 预览窗 tkinter 字号（pt），相对原 8–11pt 体系全局 +1
+UI_FONT_PT_MAIN = 12
+UI_FONT_PT_SMALL = 11
+UI_FONT_PT_MICRO = 9
+UI_FONT_PT_ZH_CAPTION = 10
+UI_FONT_PT_TITLE = 21
+
+IMAGE_EXTENSIONS: Tuple[str, ...] = (
+    ".jpg",
+    ".jpeg",
+    ".png",
+    ".webp",
+    ".bmp",
+    ".gif",
+    ".JPG",
+    ".JPEG",
+    ".PNG",
+    ".WEBP",
+)

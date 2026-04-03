@@ -1,0 +1,300 @@
+"""内置风格 JSON 模板与预设列表。"""
+from __future__ import annotations
+
+from typing import Any, Dict, List, Tuple
+
+from wallpaper_maker.config import (
+    DEFAULT_BG_BASE_STYLE,
+    DEFAULT_BG_OVERLAY_STYLE,
+    DEFAULT_BG_OVERLAY_STRENGTH,
+    DEFAULT_BG_STYLE,
+    DEFAULT_ENABLE_AESTHETIC_RULES,
+    DEFAULT_EXPORT_FORMAT,
+    DEFAULT_FILTER_STYLE,
+    DEFAULT_FILTER_STRENGTH,
+    DEFAULT_JPEG_QUALITY,
+    DEFAULT_LAYOUT,
+    DEFAULT_OUTPUT_DIR,
+    DEFAULT_RANDOM_COUNT,
+    DEFAULT_SAMPLING_STRATEGY,
+    DEFAULT_SEED_COUNT,
+    DEFAULT_STYLE_INTENSITY,
+    DEFAULT_TEXT,
+    DEFAULT_TEXT_POS,
+    DEFAULT_STAMP_SIZE,
+    DEFAULT_TEXT_SIZE,
+    DEFAULT_UI_THEME_MODE,
+    DEFAULT_WALLPAPER_HEIGHT,
+    DEFAULT_WALLPAPER_WIDTH,
+    DEFAULT_WEBP_QUALITY,
+    PRESET_VERSION,
+)
+
+def _empty_preset_template() -> Dict[str, Any]:
+    """完整预设字段默认值；内置方案片段与此合并后应用到界面。"""
+    return {
+        "preset_version": PRESET_VERSION,
+        "preset_name": "",
+        "preset_type": "wallpaper_maker_gui",
+        "magazine_style": False,
+        "layout": DEFAULT_LAYOUT,
+        "random_count": DEFAULT_RANDOM_COUNT,
+        "seed_base": DEFAULT_SEED_COUNT,
+        "width": DEFAULT_WALLPAPER_WIDTH,
+        "height": DEFAULT_WALLPAPER_HEIGHT,
+        "batch_count": 3,
+        "margin": 40,
+        "gap": 30,
+        "rotation_deg": 15.0,
+        "scatter_bleed": 0.1,
+        "scatter_scale_min": 0.7,
+        "scatter_scale_max": 1.45,
+        "scatter_shadow": True,
+        "bg_style": DEFAULT_BG_STYLE,
+        "bg_base_style": DEFAULT_BG_BASE_STYLE,
+        "bg_overlay_style": DEFAULT_BG_OVERLAY_STYLE,
+        "bg_overlay_strength": DEFAULT_BG_OVERLAY_STRENGTH,
+        "bg_custom_top": "白色",
+        "bg_custom_bottom": "黑色",
+        "custom_text": DEFAULT_TEXT,
+        "text_size": DEFAULT_TEXT_SIZE,
+        "stamp_size": DEFAULT_STAMP_SIZE,
+        "text_pos": DEFAULT_TEXT_POS,
+        "stamp_place": "same_above",
+        "text_color_name": "白色",
+        "stroke_color_name": "黑色",
+        "show_stamp": True,
+        "recursive": False,
+        "output_dir": DEFAULT_OUTPUT_DIR,
+        "export_format": DEFAULT_EXPORT_FORMAT,
+        "filter_style": DEFAULT_FILTER_STYLE,
+        "filter_strength": DEFAULT_FILTER_STRENGTH,
+        "jpeg_quality": DEFAULT_JPEG_QUALITY,
+        "webp_quality": DEFAULT_WEBP_QUALITY,
+        "webp_lossless": False,
+        "embed_srgb_icc": True,
+        "preview_batch_sync": True,
+        "preview_batch_count": 3,
+        "follow_preview_seed": False,
+        "auto_show_gallery_on_preview": True,
+        "ui_theme_mode": DEFAULT_UI_THEME_MODE,
+        "enable_aesthetic_rules": DEFAULT_ENABLE_AESTHETIC_RULES,
+        "style_intensity": DEFAULT_STYLE_INTENSITY,
+        "sampling_strategy": DEFAULT_SAMPLING_STRATEGY,
+        "source_folder_weights": {},
+        "source_folders": [],
+    }
+
+
+def _merge_preset_payload(raw: Dict[str, Any]) -> Dict[str, Any]:
+    """兼容缺少字段的旧 JSON；未知键丢弃。"""
+    base = _empty_preset_template()
+    for k in base:
+        if k in raw:
+            base[k] = raw[k]
+    if "preset_file_version" in raw and "preset_version" not in raw:
+        base["preset_version"] = int(raw["preset_file_version"])
+    return base
+
+
+# 通用内置风格（非杂志风）；与杂志方案合并为「内置风格」下拉全集
+GENERAL_BUILTIN_STYLE_PRESETS: List[Tuple[str, Dict[str, Any]]] = [
+    (
+        "通用 · 极简居中",
+        {
+            "magazine_style": False,
+            "layout": "centered",
+            "random_count": 12,
+            "margin": 56,
+            "gap": 28,
+            "rotation_deg": 4.0,
+            "bg_style": "neutral_gradient",
+            "text_size": 56,
+            "stamp_size": 34,
+            "text_pos": "bottom_left",
+            "custom_text": "Less is more.",
+            "show_stamp": True,
+        },
+    ),
+    (
+        "通用 · 画廊无缝",
+        {
+            "magazine_style": False,
+            "layout": "seamless",
+            "random_count": 28,
+            "margin": 8,
+            "gap": 0,
+            "rotation_deg": 0.0,
+            "bg_style": "from_covers",
+            "text_size": 52,
+            "stamp_size": 32,
+            "text_pos": "bottom_right",
+            "custom_text": "Wall Gallery",
+            "show_stamp": True,
+        },
+    ),
+    (
+        "通用 · 清新网格",
+        {
+            "magazine_style": False,
+            "layout": "grid",
+            "random_count": 20,
+            "margin": 44,
+            "gap": 22,
+            "rotation_deg": 6.0,
+            "bg_style": "from_covers",
+            "text_size": 58,
+            "stamp_size": 36,
+            "text_pos": "bottom_right",
+            "custom_text": "Morning Grid",
+            "show_stamp": True,
+        },
+    ),
+    (
+        "通用 · 斜向流动",
+        {
+            "magazine_style": False,
+            "layout": "diagonal",
+            "random_count": 18,
+            "margin": 40,
+            "gap": 20,
+            "rotation_deg": 10.0,
+            "bg_style": "from_covers",
+            "text_size": 60,
+            "stamp_size": 38,
+            "text_pos": "bottom_left",
+            "custom_text": "Flow",
+            "show_stamp": True,
+        },
+    ),
+    (
+        "通用 · 主图焦点",
+        {
+            "magazine_style": False,
+            "layout": "focus",
+            "random_count": 14,
+            "margin": 46,
+            "gap": 30,
+            "rotation_deg": 6.0,
+            "bg_style": "radial_covers",
+            "text_size": 64,
+            "stamp_size": 40,
+            "text_pos": "bottom_right",
+            "custom_text": "Spotlight",
+            "show_stamp": True,
+        },
+    ),
+    (
+        "通用 · 蜂窝拼贴",
+        {
+            "magazine_style": False,
+            "layout": "honeycomb",
+            "random_count": 19,
+            "margin": 42,
+            "gap": 18,
+            "rotation_deg": 8.0,
+            "bg_style": "from_covers",
+            "text_size": 54,
+            "stamp_size": 34,
+            "text_pos": "top_right",
+            "custom_text": "Honeycomb",
+            "show_stamp": True,
+        },
+    ),
+]
+
+# 内置杂志风一键方案：(展示名, 覆盖字段)
+MAGAZINE_BUILTIN_PRESETS: List[Tuple[str, Dict[str, Any]]] = [
+    (
+        "杂志 · 封面瀑布流",
+        {
+            "magazine_style": True,
+            "layout": "masonry",
+            "random_count": 18,
+            "margin": 52,
+            "gap": 20,
+            "rotation_deg": 8.0,
+            "bg_style": "from_covers",
+            "text_size": 64,
+            "stamp_size": 38,
+            "text_pos": "bottom_left",
+            "text_color_name": "白色",
+            "stroke_color_name": "黑色",
+            "custom_text": "Cover Story",
+            "show_stamp": True,
+            "batch_count": 3,
+        },
+    ),
+    (
+        "杂志 · 编辑部散落",
+        {
+            "magazine_style": True,
+            "layout": "scatter",
+            "random_count": 20,
+            "margin": 44,
+            "gap": 28,
+            "rotation_deg": 14.0,
+            "scatter_bleed": 0.12,
+            "scatter_scale_min": 0.62,
+            "scatter_scale_max": 1.42,
+            "bg_style": "neutral_gradient",
+            "text_size": 56,
+            "stamp_size": 36,
+            "text_pos": "bottom_right",
+            "custom_text": "Editor's Desk",
+        },
+    ),
+    (
+        "杂志 · 左留白目录",
+        {
+            "magazine_style": True,
+            "layout": "left_white",
+            "random_count": 14,
+            "margin": 48,
+            "gap": 24,
+            "rotation_deg": 6.0,
+            "bg_style": "solid",
+            "text_size": 52,
+            "stamp_size": 34,
+            "text_pos": "bottom_left",
+            "custom_text": "Contents",
+        },
+    ),
+    (
+        "杂志 · 焦点特稿",
+        {
+            "magazine_style": True,
+            "layout": "focus",
+            "random_count": 12,
+            "margin": 40,
+            "gap": 32,
+            "rotation_deg": 5.0,
+            "bg_style": "radial_covers",
+            "text_size": 72,
+            "stamp_size": 42,
+            "text_pos": "bottom_right",
+            "custom_text": "Feature",
+        },
+    ),
+    (
+        "杂志 · 对称分屏",
+        {
+            "magazine_style": True,
+            "layout": "split",
+            "random_count": 16,
+            "margin": 46,
+            "gap": 18,
+            "rotation_deg": 0.0,
+            "bg_style": "from_covers",
+            "text_size": 60,
+            "stamp_size": 40,
+            "text_pos": "top_right",
+            "custom_text": "Double Take",
+        },
+    ),
+]
+
+# 下拉「内置风格」完整列表：通用 + 杂志（应用时与空模板合并后写入界面，可再改任意项）
+BUILTIN_STYLE_PRESETS: List[Tuple[str, Dict[str, Any]]] = (
+    GENERAL_BUILTIN_STYLE_PRESETS + MAGAZINE_BUILTIN_PRESETS
+)

@@ -1,0 +1,47 @@
+# ------------------------------
+# Python cache / bytecode
+# ------------------------------
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# ------------------------------
+# Test / tooling cache
+# ------------------------------
+.pytest_cache/
+
+# ------------------------------
+# macOS system files
+# ------------------------------
+.DS_Store
+
+# ------------------------------
+# Build and packaging artifacts
+# ------------------------------
+build/
+dist/
+*.app
+*.dmg
+*.zip
+
+# PyInstaller generated files
+*.spec
+app.iconset/
+
+# ------------------------------
+# Local IDE / agent metadata
+# ------------------------------
+.cursor/
+.specstory/
+
+# ------------------------------
+# Local temporary runtime data
+# ------------------------------
+_tmp_test_run/
+previous_version/
+
+# Keep VSCode settings optional.
+# Uncomment next line if you do not want to sync editor settings.
+.vscode/
+
