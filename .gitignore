@@ -27,6 +27,7 @@ dist/
 
 # PyInstaller generated files
 *.spec
+app.icns
 app.iconset/
 
 # ------------------------------
